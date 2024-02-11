@@ -1,104 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .happy__content {
+        text-align: center;
+    }
+
+    .happy__content h1 {
+        font-family: 'Pacifico', cursive;
+        font-size: 28px;
+        color: #FF69B4;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        letter-spacing: 1px;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .left-align {
+        align-self: flex-start;
+    }
+
+    .right-align {
+        align-self: flex-end;
+    }
+
+</style>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Gift Card with Firework Effect</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      text-align: center;
-    }
-    .card {
-      background-color: #fff;
-      width: 300px;
-      margin: 50px auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-    }
-    .message {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    .sender {
-      font-style: italic;
-    }
-    .image {
-      width: 200px;
-      height: auto;
-      margin: 20px auto;
-    }
-    .footer {
-      font-size: 14px;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="js/index.js"></script>
+    <script defer src="js/Canvas.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <div class="card">
-    <h2>Happy Birthday!</h2>
-    <p class="message">Wishing you a day filled with love, laughter, and joy!</p>
-    <img class="image" src="birthday_gift.jpg" alt="Birthday Gift">
-    <p class="footer">- Your Name</p>
-    <canvas id="fireworksCanvas" width="300" height="200"></canvas>
-  </div>
 
-  <script>
-    window.onload = function() {
-      var canvas = document.getElementById("fireworksCanvas");
-      var ctx = canvas.getContext("2d");
 
-      function firework(x, y) {
-        var particleCount = 100;
-        var particles = [];
 
-        for (var i = 0; i < particleCount; i++) {
-          particles.push({
-            x: x,
-            y: y,
-            angle: Math.random() * Math.PI * 2,
-            speed: 2 + Math.random() * 2,
-            radius: 2 + Math.random() * 2,
-            color: "#" + ((1 << 24) * Math.random() | 0).toString(16)
-          });
-        }
+    
+    <div class="container-content">
+        <div class="setting-icon">
+            <i class="fas fa-cog"></i>
+        </div>
+        <div class="content">
+            <div class="happy__content">
+	    <h1 class="left-align">Dear 33, life might have ups and downs, but keep on being kind and loving. Across the oceans and shores, the best you deserve will ultimately find its way to you. Happy Birthday. </h1>
+	    <h1 class="right-align">Cheng</h1>
+            </div>
 
-        function draw() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+	    <audio controls>
+		<source src="music.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	    </audio>
 
-          for (var i = 0; i < particles.length; i++) {
-            var p = particles[i];
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
-            ctx.fill();
+            <div class="countdown__content">
+                <div class="headline">
+                   <h1>COUNTDOWN TO BIRTHDAY DATE :</h1>
+                </div>
+                  <div class="subline">
+                    <h2>From this day until 27 November 2077</h2>
+                </div>
+                <ul>
+                    <li><span class="days"></span>Days</li>
+                    <li><span class="hours">12</span>Hours</li>
+                    <li><span class="minutes"></span>Minutes</li>
+                    <li><span class="seconds"></span>Seconds</li>
+                </ul>
+            </div>
+        </div>
+        
 
-            p.x += Math.cos(p.angle) * p.speed;
-            p.y += Math.sin(p.angle) * p.speed;
-            p.radius *= 0.95;
-          }
+        <div class="content-modalbox" style="display: none;">
+            <h1 class="headline__modalbox style="display: none;">Insert Your Birthday Date </h1>
+            
+            <div class="input-container__modalbox style="display: none;">
+                <input type="text" class="birthday__input" placeholder="exp: 20 March 2000">
+                <button  class="button submit-btn__input--style">Submit Date</button>
+            </div>
+            <div class="alert-paragraph__modalbox style="display: none;">
+                Alert : You have to insert with format like this "Date Month Year" and make sure you write the month in English. Exp : 13 March 2001. Otherwise, it's not gonna working.
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-canvas">
+        <canvas></canvas>
+    </div>
 
-          particles = particles.filter(function(p) {
-            return p.radius > 0.5;
-          });
-
-          if (particles.length > 0) {
-            requestAnimationFrame(draw);
-          }
-        }
-
-        draw();
-      }
-
-      canvas.addEventListener("click", function(event) {
-        var rect = canvas.getBoundingClientRect();
-        var mouseX = event.clientX - rect.left;
-        var mouseY = event.clientY - rect.top;
-        firework(mouseX, mouseY);
-      });
-    };
-  </script>
 </body>
+
 </html>
